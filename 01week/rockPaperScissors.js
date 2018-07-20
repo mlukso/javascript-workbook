@@ -9,8 +9,8 @@ const rl = readline.createInterface({
 
 
 function rockPaperScissors(hand1, hand2) {
-  // Write code here
 
+  // Write code here
   // 1. Did the users enter a valid input? Need a function to check if hand1 & hand2 are valid. If not, return error. I can write a condition to check the string for 'rock', 'paper', or 'scissors'
   // 2. Will need conditions for both hand1 and hand2.
   // 3. If they are valid, I need to write conditions to compare the inputs.
@@ -25,18 +25,19 @@ function rockPaperScissors(hand1, hand2) {
   // 12. Write a condition to check: if (hand1 === 'scissors' && hand2 === 'scissors') return "It's a tie!"
 
   // Can you think of a simpler way?
-  // Still need a condition to check if the inputs are valid for hand1 and hand2. Is it a string? Does it match 'rock', 'paper', or 'scissors'? If not, return "Please choose type 'rock', 'paper', or 'scissors'." and request input again. 
+  // Still need a condition to check if the inputs are valid for hand1 and hand2. Is it a string? Does it match 'rock', 'paper', or 'scissors'? If not, return "Please choose type 'rock', 'paper', or 'scissors'." and request input again.
   // else if (hand1 === hand2) then return "It's a tie!"
-  // else if (hand1 === 'rock' && hand2 === 'paper') return "Hand two wins!" else return "Hand one wins!"
-  // else if (hand1 === 'paper' && hand2 === 'rock') return "Hand two wins!" else return "Hand one wins!"
-  // else if (hand1 === 'scissors' && hand2 === 'rock') return "Hand two wins!" else return "Hand one wins!"
+  // else if (hand1 === 'paper' && hand2 === 'rock') return "Hand one wins!"
+  // else if (hand1 === 'scissors' && hand2 === 'paper') return "Hand one wins!"
+  // else if (hand1 === 'rock' && hand2 === 'scissors') return "Hand one wins!"
+  // else return "Hand two wins!"
 
 }
 
 function getPrompt() {
   rl.question('hand1: ', (answer1) => {
     rl.question('hand2: ', (answer2) => {
-      console.log( rockPaperScissors(answer1, answer2) );
+      console.log(rockPaperScissors(answer1, answer2));
       getPrompt();
     });
   });

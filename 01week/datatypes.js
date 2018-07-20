@@ -31,17 +31,17 @@ console.log(stringToNumber)
 // NaN
 // String
 
-// Notes: "typeof" can tell us the data type 
+// Notes: "typeof" can tell us the data type
 
 const input = "test"
 console.log(typeof input)
 
 // 5. Write a JavaScript program that adds 2 numbers together.
 
-// Notes: write simple function to return sum of inputs
+// Notes: write simple function to return sum of inputs. Use Number() to verify values are both numbers.
 
-const sum=(num1, num2)=>{return num1 + num2}
-console.log(sum(10, 70))
+const sum=(num1, num2)=>{return Number(num1) + Number(num2)}
+console.log(sum('10', 0))
 
 // 6. Write a JavaScript program that runs only when 2 things are true.
 
@@ -65,19 +65,16 @@ const oneTrue=(input3, input4)=>{
  }
 }
 
-console.log(oneTrue(null,"true"))
+console.log(oneTrue(2,0))
 
 // 8. Write a JavaScript program that runs when both things are not true.
 
-// Notes: added an extra line to only continue if both values are "fasley"
+// Notes: can use ! in
 
 const noneTrue=(input5, input6)=>{
- if (input5 || input6) {
-   return false
- } else {
-   return true
- }
+  if (!input5 && !input6) {
+    return true
+  }
 }
 
-console.log(noneTrue(1,1))
-
+console.log(noneTrue(1,0))

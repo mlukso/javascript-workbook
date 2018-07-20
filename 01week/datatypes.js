@@ -69,7 +69,7 @@ console.log(oneTrue(2,0))
 
 // 8. Write a JavaScript program that runs when both things are not true.
 
-// Notes: can use ! in
+// Notes: can use ! in front of variables to check if both inputs are "falsey"
 
 const noneTrue=(input5, input6)=>{
   if (!input5 && !input6) {

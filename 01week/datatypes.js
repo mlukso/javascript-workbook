@@ -2,26 +2,27 @@
 
 // Notes: method "Date()" can pull the current date/time
 
-const currentTime = Date();
-console.log(currentTime)
+const currentTime=()=>{return Date()}
+
+console.log(currentTime())
 
 
 // 2. Write a JavaScript program to convert a number to a string.
 
 // Notes: method "String()" can convert numbers to a string.
 
-const value2 = 100;
-const numberToString = String(value2)
-console.log(numberToString)
+const numberToString=(value1)=>{return String(value1)}
+
+console.log(numberToString(100))
 
 
 // 3. Write a JavaScript program to convert a string to the number.
 
 // Notes: method "Number()" can convert numbers to a number.
 
-const value1 = "10"
-const stringToNumber =  Number(value1);
-console.log(stringToNumber)
+const stringToNumber=(value2)=>{return Number(value2)}
+
+console.log(stringToNumber('10'))
 
 //4. Write a JavaScript program that takes in different datatypes and prints out whether they are a:
 // Boolean
@@ -33,12 +34,13 @@ console.log(stringToNumber)
 
 // Notes: "typeof" can tell us the data type
 
-const input = "test"
-console.log(typeof input)
+const checkType=(value3)=>{return typeof value3}
+
+console.log(checkType('test'))
 
 // 5. Write a JavaScript program that adds 2 numbers together.
 
-// Notes: write simple function to return sum of inputs. Use Number() to verify values are both numbers.
+// Notes: write simple function to return sum of inputs
 
 const sum=(num1, num2)=>{return Number(num1) + Number(num2)}
 console.log(sum('10', 0))
@@ -69,7 +71,7 @@ console.log(oneTrue(2,0))
 
 // 8. Write a JavaScript program that runs when both things are not true.
 
-// Notes: can use ! in front of variables to check if both inputs are "falsey"
+// Notes: added an extra line to only continue if both values are "fasley"
 
 const noneTrue=(input5, input6)=>{
   if (!input5 && !input6) {

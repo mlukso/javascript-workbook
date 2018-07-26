@@ -7,31 +7,40 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
-function rockPaperScissors(hand1, hand2) {
-
-  // Write code here
-  // 1. Did the users enter a valid input? Need a function to check if hand1 & hand2 are valid. If not, return error. I can write a condition to check the string for 'rock', 'paper', or 'scissors'
-  // 2. Will need conditions for both hand1 and hand2.
-  // 3. If they are valid, I need to write conditions to compare the inputs.
-  // 4. Write a condition to check: if (hand1 === 'rock' && hand2 === 'scissors') return "Hand one wins!"
-  // 5. Write a condition to check: if (hand1 === 'rock' && hand2 === 'paper') return "Hand two Wins!"
-  // 6. Write a condition to check: if (hand1 === 'rock' && hand2 === 'rock') return "It's a tie!"
-  // 7. Write a condition to check: if (hand1 === 'paper' && hand2 === 'rock') return "Hand one wins!"
-  // 8. Write a condition to check: if (hand1 === 'paper' && hand2 === 'scissors') return "Hand two wins!"
-  // 9. Write a condition to check: if (hand1 === 'paper' && hand2 === 'paper') return "It's a tie!"
-  // 10. Write a condition to check: if (hand1 === 'scissors' && hand2 === 'paper') return "Hand one wins!"
-  // 11. Write a condition to check: if (hand1 === 'scissors' && hand2 === 'rock') return "Hand two wins!"
-  // 12. Write a condition to check: if (hand1 === 'scissors' && hand2 === 'scissors') return "It's a tie!"
-
-  // Can you think of a simpler way?
-  // Still need a condition to check if the inputs are valid for hand1 and hand2. Is it a string? Does it match 'rock', 'paper', or 'scissors'? If not, return "Please choose type 'rock', 'paper', or 'scissors'." and request input again.
+  // Need a condition to check if hand1 && hand2 have inputs "truthy"
+  // Need a conditions to trim spaces, convert all letters to lowercase, and convert to string
+  // Need a condition to check if the inputs are valid for hand1 && hand2. Does it match 'rock', 'paper', or 'scissors'? If not, return "Please choose type 'rock', 'paper', or 'scissors'."
   // else if (hand1 === hand2) then return "It's a tie!"
   // else if (hand1 === 'paper' && hand2 === 'rock') return "Hand one wins!"
   // else if (hand1 === 'scissors' && hand2 === 'paper') return "Hand one wins!"
   // else if (hand1 === 'rock' && hand2 === 'scissors') return "Hand one wins!"
   // else return "Hand two wins!"
 
+
+const rockPaperScissors=(hand1, hand2)=>{
+
+  // Check if inputs are "Truthy"
+  if (hand1 && hand2){
+  } else {return "Please enter 'rock', 'paper', or 'scissors'"}
+
+  // Trim spaces, convert to lowercase, and ensure a String for each of the inputs
+  hand1 = hand1.trim();
+  hand1 = hand1.toLowerCase();
+  hand1 = String(hand1)
+
+  hand2 = hand2.trim();
+  hand2 = hand2.toLowerCase();
+  hand2 = String(hand2)
+
+  // game logic to compare inputs
+  if (hand1 !== 'rock' && hand1 !== 'paper' && hand1 !== 'scissors'){return "Please enter 'rock', 'paper', or 'scissors'"}
+  else if (hand2 !== 'rock' && hand2 !== 'paper' && hand2 !== 'scissors'){return "Please enter 'rock', 'paper', or 'scissors'"}
+
+    else if (hand1 === hand2){return "It's a tie!"}
+    else if (hand1 === 'paper' && hand2 === 'rock') {return "Hand one wins!"}
+    else if (hand1 === 'scissors' && hand2 === 'paper'){return "Hand one wins!"}
+    else if (hand1 === 'rock' && hand2 === 'scissors') {return "Hand one wins!"}
+    else {return "Hand two wins!"}
 }
 
 function getPrompt() {

@@ -72,6 +72,11 @@ if (typeof describe === 'function') {
       assert.equal(rockPaperScissors('Paper', 'SCISSORS'), "Hand two wins!");
       assert.equal(rockPaperScissors('rock ', 'sCiSsOrs'), "Hand one wins!");
     });
+    it('should return an error if the inputs are not valid', () => {
+      assert.equal(rockPaperScissors('paper', null), "Please enter 'rock', 'paper', or 'scissors'");
+      assert.equal(rockPaperScissors(0, 'Rock'), "Please enter 'rock', 'paper', or 'scissors'");
+      assert.equal(rockPaperScissors('testing', 'paper'), "Please enter 'rock', 'paper', or 'scissors'");
+    });
   });
 } else {
 

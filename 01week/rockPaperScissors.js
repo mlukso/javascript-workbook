@@ -21,26 +21,30 @@ const rockPaperScissors=(hand1, hand2)=>{
 
   // Check if inputs are "Truthy"
   if (hand1 && hand2){
-  } else {return "Please enter 'rock', 'paper', or 'scissors'"}
+  } else {
+    return "Please enter 'rock', 'paper', or 'scissors'"
+  }
 
-  // Trim spaces, convert to lowercase, and ensure a String for each of the inputs
-  hand1 = hand1.trim();
-  hand1 = hand1.toLowerCase();
-  hand1 = String(hand1)
-
-  hand2 = hand2.trim();
-  hand2 = hand2.toLowerCase();
-  hand2 = String(hand2)
+  // Trim spaces and convert to lowercase
+  const hand1Formatted = hand1.trim().toLowerCase();
+  const hand2Formatted = hand2.trim().toLowerCase();
 
   // game logic to compare inputs
-  if (hand1 !== 'rock' && hand1 !== 'paper' && hand1 !== 'scissors'){return "Please enter 'rock', 'paper', or 'scissors'"}
-  else if (hand2 !== 'rock' && hand2 !== 'paper' && hand2 !== 'scissors'){return "Please enter 'rock', 'paper', or 'scissors'"}
-
-    else if (hand1 === hand2){return "It's a tie!"}
-    else if (hand1 === 'paper' && hand2 === 'rock') {return "Hand one wins!"}
-    else if (hand1 === 'scissors' && hand2 === 'paper'){return "Hand one wins!"}
-    else if (hand1 === 'rock' && hand2 === 'scissors') {return "Hand one wins!"}
-    else {return "Hand two wins!"}
+  if (hand1Formatted !== 'rock' && hand1Formatted !== 'paper' && hand1Formatted !== 'scissors'){
+      return "Please enter 'rock', 'paper', or 'scissors'"
+  } else if (hand2Formatted !== 'rock' && hand2Formatted !== 'paper' && hand2Formatted !== 'scissors'){
+      return "Please enter 'rock', 'paper', or 'scissors'"
+  } else if (hand1Formatted === hand2Formatted){
+      return "It's a tie!"
+  } else if (hand1Formatted === 'paper' && hand2Formatted === 'rock'){
+      return "Hand one wins!"
+  } else if (hand1Formatted === 'scissors' && hand2Formatted === 'paper'){
+      return "Hand one wins!"
+  } else if (hand1Formatted === 'rock' && hand2Formatted === 'scissors'){
+      return "Hand one wins!"
+  } else {
+      return "Hand two wins!"
+  }
 }
 
 function getPrompt() {

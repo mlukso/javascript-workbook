@@ -56,16 +56,28 @@ const checkForWin=()=>{
   }
 }
 
-const isValidPick=(row, column)=>{
-  if ((row === 0 || row === 1 || row === 2)
-   && (column === 0 || column === 1 || column === 2)
-   && (board[row][column] === ' ')) {
-    return true
-  }
-}
+// note: I can't get this validation to work :/
+
+// const isValidPick=(row, column)=>{
+//   if ((row === 0 || row === 1 || row === 2)
+//    && (column === 0 || column === 1 || column === 2)
+//    && (board[row][column] === ' ')) {
+//     return true
+//   }
+// }
 
 const ticTacToe=(row, column)=> {
 // Your code here
+
+  // note: input validation from isValidPick function still doesn't work when extracted from the function
+  // note: I'm just going to skip validation for now
+
+  // if ((row === 0 || row === 1 || row === 2)
+  //  && (column === 0 || column === 1 || column === 2)
+  //  && (board[row][column] === ' ')) {
+  //    board[row][column] = playerTurn
+  // }
+
   board[row][column] = playerTurn
 
   if (playerTurn === 'X'){
@@ -74,14 +86,22 @@ const ticTacToe=(row, column)=> {
     playerTurn = 'X'
   }
 
-  // if (isValidPick(row, column)){
-    // board[row][column] = playerTurn
-  // } else {
-  //   return 'Please pick a valid location player ' + playerTurn
-  // }
+  // note: the code below works in repl.it but not in here
+  // https://repl.it/@mlukso/ticTacToe-2
 
-  // if (checkForWin()){
-  //   return 'Player ' + playerTurn + ' Wins!'
+  //   if (isValidPick(row, column)){
+  //     board[row][column] = playerTurn
+  //   } else {
+  //     return 'Please pick a valid location player ' + playerTurn
+  //   }
+  //
+  //   if (checkForWin()){
+  //       return 'Player ' + playerTurn + ' Wins!'
+  //   } else if (playerTurn === 'X'){
+  //       playerTurn = 'O'
+  //   } else {
+  //       playerTurn = 'X'
+  //   }
   // }
 }
 

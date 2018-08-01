@@ -14,7 +14,7 @@ let board = [
 
 let playerTurn = 'X';
 
-function printBoard() {
+const printBoard=()=> {
   console.log('   0  1  2');
   console.log('0 ' + board[0].join(' | '));
   console.log('  ---------');
@@ -23,24 +23,66 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
-function horizontalWin() {
+const horizontalWin=()=> {
   // Your code here
+  if ((board[0][0].includes(playerTurn) && board[0][1].includes(playerTurn) && board[0][2].includes(playerTurn))
+   || (board[1][0].includes(playerTurn) && board[1][1].includes(playerTurn) && board[1][2].includes(playerTurn))
+   || (board[2][0].includes(playerTurn) && board[2][1].includes(playerTurn) && board[2][2].includes(playerTurn))){
+        return true
+  }
 }
 
-function verticalWin() {
+const verticalWin=()=> {
   // Your code here
+  if ((board[0][0].includes(playerTurn) && board[1][0].includes(playerTurn) && board[2][0].includes(playerTurn))
+   || (board[0][1].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][1].includes(playerTurn))
+   || (board[0][2].includes(playerTurn) && board[1][2].includes(playerTurn) && board[2][2].includes(playerTurn))){
+        return true
+  }
 }
 
-function diagonalWin() {
+const diagonalWin=()=> {
   // Your code here
+  if ((board[0][0].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][2].includes(playerTurn))
+   || (board[0][2].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][0].includes(playerTurn))){
+        return true
+  }
 }
 
-function checkForWin() {
+const checkForWin=()=>{
   // Your code here
+  if (horizontalWin() || verticalWin() || diagonalWin()){
+        return true
+  }
 }
 
-function ticTacToe(row, column) {
-  // Your code here
+const isValidPick=(row, column)=>{
+  if ((row === 0 || row === 1 || row === 2)
+   && (column === 0 || column === 1 || column === 2)
+   && (board[row][column] === ' ')) {
+    return true
+  }
+}
+
+const ticTacToe=(row, column)=> {
+// Your code here
+  board[row][column] = playerTurn
+
+  if (playerTurn === 'X'){
+    playerTurn = 'O'
+  } else {
+    playerTurn = 'X'
+  }
+
+  // if (isValidPick(row, column)){
+    // board[row][column] = playerTurn
+  // } else {
+  //   return 'Please pick a valid location player ' + playerTurn
+  // }
+
+  // if (checkForWin()){
+  //   return 'Player ' + playerTurn + ' Wins!'
+  // }
 }
 
 function getPrompt() {

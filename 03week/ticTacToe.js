@@ -135,6 +135,10 @@ if (typeof describe === 'function') {
     it('should detect a win', () => {
       assert.equal(checkForWin(), true);
     });
+    it('should detect a valid input', () => {
+      board = [ [' ', 'X', ' '], [' ', 'X', ' '], [' ', 'X', ' '] ];
+      assert.equal(isValidPick(0,0), true);
+    });
   });
 } else {
 

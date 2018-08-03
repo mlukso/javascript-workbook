@@ -12,3 +12,5 @@ const arr1 = ['Bolt','Phelps', 'white', 'lewis', 'freeman'];
 
 
 printListOfOlympians(arr1);
+
+// adding a comment

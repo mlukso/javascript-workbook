@@ -107,6 +107,10 @@ if (typeof describe === 'function') {
       assert.equal(pigLatin('HeLlO '), 'ellohay');
       assert.equal(pigLatin(' RoCkEt'), 'ocketray');
     });
+    it('should lowercase, trim and translate each word in a whole sentance to pig latin', () => {
+      assert.equal(pigLatinSentence('My Name Is MATT  '), 'ymay amenay isyay attmay');
+      assert.equal(pigLatinSentence('  it is SO HOT in AUSTIN '), 'ityay isyay osay othay inyay austinyay');
+    });
   });
 } else {
 

@@ -23,90 +23,74 @@ const printBoard=()=> {
   console.log('2 ' + board[2].join(' | '));
 }
 
+// checking all values in each individual array on the board object for matching values
 const horizontalWin=()=> {
-  // Your code here
   if ((board[0][0].includes(playerTurn) && board[0][1].includes(playerTurn) && board[0][2].includes(playerTurn))
    || (board[1][0].includes(playerTurn) && board[1][1].includes(playerTurn) && board[1][2].includes(playerTurn))
    || (board[2][0].includes(playerTurn) && board[2][1].includes(playerTurn) && board[2][2].includes(playerTurn))){
-        return true
+        return true;
   }
 }
 
+// checking the same index in each of the arrays on the board object for matching values
 const verticalWin=()=> {
-  // Your code here
   if ((board[0][0].includes(playerTurn) && board[1][0].includes(playerTurn) && board[2][0].includes(playerTurn))
    || (board[0][1].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][1].includes(playerTurn))
    || (board[0][2].includes(playerTurn) && board[1][2].includes(playerTurn) && board[2][2].includes(playerTurn))){
-        return true
+        return true;
   }
 }
 
+// checking the first/last arrays first/last index, and middle index of the middle array, for matching values
 const diagonalWin=()=> {
-  // Your code here
   if ((board[0][0].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][2].includes(playerTurn))
    || (board[0][2].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][0].includes(playerTurn))){
-        return true
+        return true;
   }
 }
 
+// checking if any of the above functions are true to find a winnner
 const checkForWin=()=>{
-  // Your code here
   if (horizontalWin() || verticalWin() || diagonalWin()){
-        return true
+        return true;
   }
 }
 
-// note: I can't get this validation to work :/
+// switches player from 'X' to 'O'
+const switchPlayer=()=>{
+  if (playerTurn === 'X'){
+    playerTurn = 'O';
+  } else {
+    playerTurn = 'X';
+  }
+}
 
-// const isValidPick=(row, column)=>{
-//   if ((row === 0 || row === 1 || row === 2)
-//    && (column === 0 || column === 1 || column === 2)
-//    && (board[row][column] === ' ')) {
-//     return true
-//   }
-// }
+// checks that the player's selected location exists in the board object and is blank
+const isValidPick=(row, column)=>{
+  if ((row.includes(0) || row.includes(1) || row.includes(2))
+  && (column.includes(0) || column.includes(1) || column.includes(2))
+  && (board[row][column] === ' ')) {
+    return true;
+  }
+}
 
 const ticTacToe=(row, column)=> {
-// Your code here
 
-  // note: input validation from isValidPick function still doesn't work when extracted from the function
-  // note: I'm just going to skip validation for now
+// if pick is valid, set the row/column to be equal to the playerTurn value
+// if not, display that choice is invalid (player can choose again)
+  if (isValidPick(row, column)){
+    board[row][column] = playerTurn;
 
-  // if ((row === 0 || row === 1 || row === 2)
-  //  && (column === 0 || column === 1 || column === 2)
-  //  && (board[row][column] === ' ')) {
-  //    board[row][column] = playerTurn
-  // }
-
-  if(checkForWin()){
-    console.log('Player ' + playerTurn + ' Wins!')
-  }
-
-  board[row][column] = playerTurn
-
-  if (playerTurn === 'X'){
-    playerTurn = 'O'
+// if a player wins, display message they won and the game should be reset
+// if not, switch the player
+    if (checkForWin()){
+      console.log('Player ' + playerTurn + ' Wins! Reset game to play again.');
+    } else {
+      switchPlayer();
+    }
   } else {
-    playerTurn = 'X'
+    console.log('Invalid Option! Choose again player ' + playerTurn);
   }
-
-  // note: the code below works in repl.it but not in here
-  // https://repl.it/@mlukso/ticTacToe-2
-
-  //   if (isValidPick(row, column)){
-  //     board[row][column] = playerTurn
-  //   } else {
-  //     return 'Please pick a valid location player ' + playerTurn
-  //   }
-  //
-  //   if (checkForWin()){
-  //       return 'Player ' + playerTurn + ' Wins!'
-  //   } else if (playerTurn === 'X'){
-  //       playerTurn = 'O'
-  //   } else {
-  //       playerTurn = 'X'
-  //   }
-  // }
 }
 
 function getPrompt() {

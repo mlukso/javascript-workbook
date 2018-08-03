@@ -67,8 +67,8 @@ const switchPlayer=()=>{
 
 // checks that the player's selected location exists in the board object and is blank
 const isValidPick=(row, column)=>{
-  if ((row.includes(0) || row.includes(1) || row.includes(2))
-  && (column.includes(0) || column.includes(1) || column.includes(2))
+  if ((row == 0 || row == 1 || row == 2)
+  && (column == 0 || column == 1 || column == 2)
   && (board[row][column] === ' ')) {
     return true;
   }

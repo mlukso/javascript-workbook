@@ -78,6 +78,10 @@ const ticTacToe=(row, column)=> {
   //    board[row][column] = playerTurn
   // }
 
+  if(checkForWin()){
+    console.log('Player ' + playerTurn + ' Wins!')
+  }
+
   board[row][column] = playerTurn
 
   if (playerTurn === 'X'){

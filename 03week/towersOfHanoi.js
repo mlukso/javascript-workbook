@@ -57,7 +57,6 @@ const resetGame=()=> {
 }
 
 const towersOfHanoi=(startStack, endStack)=> {
-  // Your code here
 
   const startStackFormatted = startStack.trim().toLowerCase();
   const endStackFormatted = endStack.trim().toLowerCase();

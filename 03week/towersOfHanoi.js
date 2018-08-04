@@ -19,23 +19,28 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece(startStack, endStack) {
+function movePiece(input1, input2) {
   // Your code here
-  // if ((endStack == 'a' || endStack == 'b' || endStack == 'c')
-  //  && (startStack == 'a' || startStack == 'b' || startStack == 'c')) {
-  //    return true
-  //  }
+  return stacks[input2].push(stacks[input1].pop(input1))
 }
 
-function isLegal(startStack, endStack) {
-  // Your code here
-  if ((stacks[startStack].length > 0)
-   && (stacks[startStack].slice(-1) < stacks[endStack].slice(-1))
-   || (stacks[endStack].length == 0)) {
-     return true
-  } else {
-     return false
+function isValid(input1, input2){
+
+  if ((input1 == 'a' || input1 == 'b' || input1 == 'c')
+   && (input2 == 'a' || input2 == 'b' || input2 == 'c')
+   && (input1 !== input2)) {
+    return true
   }
+}
+
+function isLegal(input1, input2) {
+  // Your code here
+
+   if ((stacks[input1].length > 0)
+    && (stacks[input1].slice(-1) < stacks[input2].slice(-1))
+    || (stacks[input2].length == 0)) {
+      return true
+   }
 }
 
 function checkForWin() {
@@ -50,20 +55,23 @@ function checkForWin() {
 function towersOfHanoi(startStack, endStack) {
   // Your code here
 
-        console.log('Start value: ' + stacks[startStack].slice(-1))
-        console.log('End value: ' + stacks[endStack].slice(-1))
+  let startStackFormatted = startStack.trim().toLowerCase();
+  let endStackFormatted = endStack.trim().toLowerCase();
 
-  if (isLegal(startStack, endStack)){
+  if (isValid(startStackFormatted, endStackFormatted)) {
+    if (isLegal(startStackFormatted, endStackFormatted)) {
 
-    stacks[endStack].push(stacks[startStack].pop(startStack))
-    if (checkForWin()){
-      console.log('Winner!')
+      movePiece(startStackFormatted, endStackFormatted);
+
+      if (checkForWin()){
+        console.log('Winner!')
     }
   } else {
-    console.log('Try again')
+    console.log('Invalid move. Try again.')
   }
-
-  console.log(stacks[startStack].slice(-1) > stacks[endStack].slice(-1))
+  } else {
+    console.log('Invalid input. Try again.')
+  }
 }
 
 function getPrompt() {

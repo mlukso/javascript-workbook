@@ -19,44 +19,48 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece(input1, input2) {
-  // Your code here
-  return stacks[input2].push(stacks[input1].pop(input1))
+const movePiece=(input1, input2)=> {
+return stacks[input2].push(stacks[input1].pop(input1))
 }
 
-function isValid(input1, input2){
-
-  if ((input1 == 'a' || input1 == 'b' || input1 == 'c')
-   && (input2 == 'a' || input2 == 'b' || input2 == 'c')
-   && (input1 !== input2)) {
-    return true
-  }
+const isValid=(input1, input2)=> {
+  const validInputs = ['a', 'b', 'c']
+  const inputsToArray = input1.concat(input2).split('')
+  return inputsToArray.every(input => validInputs.includes(input))
 }
 
-function isLegal(input1, input2) {
-  // Your code here
-
+const isLegal=(input1, input2)=> {
    if ((stacks[input1].length > 0)
     && (stacks[input1].slice(-1) < stacks[input2].slice(-1))
-    || (stacks[input2].length == 0)) {
+    || (stacks[input2].length == 0)
+    && (input1 !== input2)) {
       return true
+   } else {
+      return false
    }
 }
 
-function checkForWin() {
-  // Your code here
+const checkForWin=()=> {
   if (stacks.b.length === 4 || stacks.c.length === 4){
-     return true
+    return true
   } else {
-     return false
+    return false
   }
 }
 
-function towersOfHanoi(startStack, endStack) {
+const resetGame=()=> {
+  stacks = {
+      a: [4, 3, 2, 1],
+      b: [],
+      c: []
+    };
+}
+
+const towersOfHanoi=(startStack, endStack)=> {
   // Your code here
 
-  let startStackFormatted = startStack.trim().toLowerCase();
-  let endStackFormatted = endStack.trim().toLowerCase();
+  const startStackFormatted = startStack.trim().toLowerCase();
+  const endStackFormatted = endStack.trim().toLowerCase();
 
   if (isValid(startStackFormatted, endStackFormatted)) {
     if (isLegal(startStackFormatted, endStackFormatted)) {
@@ -64,11 +68,16 @@ function towersOfHanoi(startStack, endStack) {
       movePiece(startStackFormatted, endStackFormatted);
 
       if (checkForWin()){
-        console.log('Winner!')
+        console.log('Winner! Enter "reset" to play again.')
+        return
     }
   } else {
     console.log('Invalid move. Try again.')
   }
+} else if (startStackFormatted.concat(endStackFormatted).includes('reset')) {
+    console.log('Game has been reset!')
+    resetGame();
+      return
   } else {
     console.log('Invalid input. Try again.')
   }

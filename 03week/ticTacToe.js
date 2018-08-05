@@ -24,16 +24,12 @@ const printBoard=()=> {
 }
 
 // checking all values in each individual array on the board object for matching values
-const horizontalWin=()=> {
-  if ((board[0][0].includes(playerTurn) && board[0][1].includes(playerTurn) && board[0][2].includes(playerTurn))
-   || (board[1][0].includes(playerTurn) && board[1][1].includes(playerTurn) && board[1][2].includes(playerTurn))
-   || (board[2][0].includes(playerTurn) && board[2][1].includes(playerTurn) && board[2][2].includes(playerTurn))){
-        return true;
-  }
+const horizontalWin=(row)=> {
+return board[row].every(input => playerTurn.includes(input))
 }
 
 // checking the same index in each of the arrays on the board object for matching values
-const verticalWin=()=> {
+const verticalWin=(row, column)=> {
   if ((board[0][0].includes(playerTurn) && board[1][0].includes(playerTurn) && board[2][0].includes(playerTurn))
    || (board[0][1].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][1].includes(playerTurn))
    || (board[0][2].includes(playerTurn) && board[1][2].includes(playerTurn) && board[2][2].includes(playerTurn))){
@@ -50,8 +46,8 @@ const diagonalWin=()=> {
 }
 
 // checking if any of the above functions are true to find a winnner
-const checkForWin=()=>{
-  if (horizontalWin() || verticalWin() || diagonalWin()){
+const checkForWin=(row, column)=>{
+  if (horizontalWin(row) || verticalWin() || diagonalWin()){
         return true;
   }
 }
@@ -83,7 +79,7 @@ const ticTacToe=(row, column)=> {
 
 // if a player wins, display message they won and the game should be reset
 // if not, switch the player
-    if (checkForWin()){
+    if (checkForWin(row, column)){
       console.log('Player ' + playerTurn + ' Wins! Reset game to play again.');
     } else {
       switchPlayer();

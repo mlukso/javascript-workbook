@@ -19,10 +19,13 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
+// moves the piece from the first stack to the second stack
 const movePiece = (input1, input2) => {
   return stacks[input2].push(stacks[input1].pop(input1))
 }
 
+// return true if both inputs (combined into an array) contain only expected values ['a', 'b', 'c']
+// Note: values have already been converted to lowercase and trimmed of spaces
 const isValid = (input1, input2) => {
   if (input1 && input2) {
     const combinedInputs = input1 += input2
@@ -31,6 +34,7 @@ const isValid = (input1, input2) => {
   }
 }
 
+// return true if the selected move is allowed (i.e. follows the rules of the game)
 const isLegal = (input1, input2) => {
   return stacks[input1].length > 0 &&
     stacks[input1].slice(-1) < stacks[input2].slice(-1) ||
@@ -38,15 +42,18 @@ const isLegal = (input1, input2) => {
     input1 !== input2
 }
 
+// return true if stack 'b' or 'c' have an array length of 4
 const checkForWin = () => {
   return stacks.b.length === 4 || stacks.c.length === 4
 }
 
+// return true if either input contains 'reset'
 const checkForReset = (input1, input2) => {
   const combinedInputsToCheckForReset = input1 += input2
   return combinedInputsToCheckForReset.includes('reset')
 }
 
+// resets all gameplay by putting 'stacks' object into original order
 const resetGame = () => {
   stacks = {
     a: [4, 3, 2, 1],
@@ -57,25 +64,34 @@ const resetGame = () => {
 
 const towersOfHanoi = (startStack, endStack) => {
 
+  // formatting the inputs to lowercase and trimming spaces
   const startStackFormatted = startStack.trim().toLowerCase();
   const endStackFormatted = endStack.trim().toLowerCase();
 
+  // checking if isValid() and/or isLegal() are true
   if (isValid(startStackFormatted, endStackFormatted)) {
     if (isLegal(startStackFormatted, endStackFormatted)) {
 
+      // if isValid() and isLegal() are true, move the piece
       movePiece(startStackFormatted, endStackFormatted);
 
+      // tells player they've won and how to reset
       if (checkForWin()) {
         console.log('Winner! Enter "reset" to play again.')
         return
       }
+      // display's "Invalid move. Try again." if isLegal() is false
     } else {
       console.log('Invalid move. Try again.')
     }
+
+    // resets the game and tells the player if checkForReset() is true
   } else if (checkForReset(startStackFormatted, endStackFormatted)) {
     console.log('Game has been reset!')
     resetGame();
     return
+
+    // display's "Invalid input. Try again." if isValid() is false
   } else {
     console.log('Invalid input. Try again.')
   }

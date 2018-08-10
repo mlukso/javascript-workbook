@@ -21,16 +21,16 @@ function printStacks() {
 
 // moves the piece from the first stack to the second stack
 const movePiece = (input1, input2) => {
-  return stacks[input2].push(stacks[input1].pop(input1))
+  return stacks[input2].push(stacks[input1].pop(input1));
 }
 
 // return true if both inputs (combined into an array) contain only expected values ['a', 'b', 'c']
 // Note: values have already been converted to lowercase and trimmed of spaces
 const isValid = (input1, input2) => {
   if (input1 && input2) {
-    const combinedInputs = input1 += input2
-    const combinedInputsToArray = (input1 += input2).split('')
-    return combinedInputsToArray.every(input => ['a', 'b', 'c'].includes(input))
+    const combinedInputs = input1 += input2;
+    const combinedInputsToArray = (input1 += input2).split('');
+    return combinedInputsToArray.every(input => ['a', 'b', 'c'].includes(input));
   }
 }
 
@@ -44,13 +44,13 @@ const isLegal = (input1, input2) => {
 
 // return true if stack 'b' or 'c' have an array length of 4
 const checkForWin = () => {
-  return stacks.b.length === 4 || stacks.c.length === 4
+  return stacks.b.length === 4 || stacks.c.length === 4;
 }
 
 // return true if either input contains 'reset'
 const checkForReset = (input1, input2) => {
-  const combinedInputsToCheckForReset = input1 += input2
-  return combinedInputsToCheckForReset.includes('reset')
+  const combinedInputsToCheckForReset = input1 += input2;
+  return combinedInputsToCheckForReset.includes('reset');
 }
 
 // resets all gameplay by putting 'stacks' object into original order
@@ -77,23 +77,23 @@ const towersOfHanoi = (startStack, endStack) => {
 
       // tells player they've won and how to reset
       if (checkForWin()) {
-        console.log('Winner! Enter "reset" to play again.')
+        console.log('Winner! Enter "reset" to play again.');
         return
       }
       // display's "Invalid move. Try again." if isLegal() is false
     } else {
-      console.log('Invalid move. Try again.')
+      console.log('Invalid move. Try again.');
     }
 
     // resets the game and tells the player if checkForReset() is true
   } else if (checkForReset(startStackFormatted, endStackFormatted)) {
-    console.log('Game has been reset!')
+    console.log('Game has been reset!');
     resetGame();
     return
 
     // display's "Invalid input. Try again." if isValid() is false
   } else {
-    console.log('Invalid input. Try again.')
+    console.log('Invalid input. Try again.');
   }
 }
 

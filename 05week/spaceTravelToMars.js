@@ -9,13 +9,20 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// Your code here
+// Plan (based on tests at bottom):
+// Need two classes - CrewMember & Ship
+// CrewMember creates a new member of the crew
+// Ship creates a new ship
+// Both classes must be able to reference each other:
+// // 1. Crew members must be able to enter a ship
+// // 2. Ships must be able to add a crew members
+// The mission statement of a Ship can be provided if a crew member is present
 
 class CrewMember {
   constructor(name, job, specialSkill, ship) {
     this.name = name,
-      this.job = job,
-      this.specialSkill = specialSkill
+    this.job = job,
+    this.specialSkill = specialSkill
     this.ship = null;
   }
   enterShip(newShip) {

@@ -51,8 +51,8 @@ class Board {
     }
     console.log(string);
   }
-
   // Your code here
+  
 }
 
 class Game {

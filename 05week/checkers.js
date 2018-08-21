@@ -10,6 +10,11 @@ const rl = readline.createInterface({
 
 function Checker() {
   // Your code here
+
+}
+
+function moveChecker(whichPiece, toWhere) {
+  console.log()
 }
 
 class Board {
@@ -52,7 +57,6 @@ class Board {
     console.log(string);
   }
   // Your code here
-  
 }
 
 class Game {
@@ -63,6 +67,8 @@ class Game {
     this.board.createGrid();
   }
 }
+
+
 
 function getPrompt() {
   game.board.viewGrid();

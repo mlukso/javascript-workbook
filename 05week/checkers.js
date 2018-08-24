@@ -17,6 +17,13 @@ function moveChecker(whichPiece, toWhere) {
   console.log()
 }
 
+class Player {
+  constructor(player, symbol) {
+    this.player = player;
+    this.symbol = symbol;
+  }
+}
+
 class Board {
   constructor() {
     this.grid = []
@@ -57,6 +64,22 @@ class Board {
     console.log(string);
   }
   // Your code here
+  addPlayers() {
+    const playerRed = new Player('Red', 'R')
+    const playerBlack = new Player('Black', 'B')
+  }
+  checkers() {
+    for (let row = 0; row < 8; row++) {
+      this.grid[row] = [];
+      for (let column = 0; column < 8; column++) {
+        if(row == 0 && column == 2){
+          this.grid[row][column] = 'R'
+      } else {
+        this.grid[row].push(null);
+      }
+      }
+    }
+  }
 }
 
 class Game {

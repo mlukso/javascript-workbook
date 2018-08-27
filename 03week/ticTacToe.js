@@ -14,7 +14,7 @@ let board = [
 
 let playerTurn = 'X';
 
-function printBoard() {
+const printBoard=()=> {
   console.log('   0  1  2');
   console.log('0 ' + board[0].join(' | '));
   console.log('  ---------');
@@ -23,24 +23,70 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
-function horizontalWin() {
-  // Your code here
+// checking all values in each individual array on the board object for matching values
+const horizontalWin=(row)=> {
+return board[row].every(input => playerTurn.includes(input))
 }
 
-function verticalWin() {
-  // Your code here
+// checking the same index in each of the arrays on the board object for matching values
+const verticalWin=(row, column)=> {
+  if ((board[0][0].includes(playerTurn) && board[1][0].includes(playerTurn) && board[2][0].includes(playerTurn))
+   || (board[0][1].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][1].includes(playerTurn))
+   || (board[0][2].includes(playerTurn) && board[1][2].includes(playerTurn) && board[2][2].includes(playerTurn))){
+        return true;
+  }
 }
 
-function diagonalWin() {
-  // Your code here
+// checking the first/last arrays first/last index, and middle index of the middle array, for matching values
+const diagonalWin=()=> {
+  if ((board[0][0].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][2].includes(playerTurn))
+   || (board[0][2].includes(playerTurn) && board[1][1].includes(playerTurn) && board[2][0].includes(playerTurn))){
+        return true;
+  }
 }
 
-function checkForWin() {
-  // Your code here
+// checking if any of the above functions are true to find a winnner
+const checkForWin=(row, column)=>{
+  if (horizontalWin(row) || verticalWin() || diagonalWin()){
+        return true;
+  }
 }
 
-function ticTacToe(row, column) {
-  // Your code here
+// switches player from 'X' to 'O'
+const switchPlayer=()=>{
+  if (playerTurn === 'X'){
+    playerTurn = 'O';
+  } else {
+    playerTurn = 'X';
+  }
+}
+
+// checks that the player's selected location exists in the board object and is blank
+const isValidPick=(row, column)=>{
+  if ((row == 0 || row == 1 || row == 2)
+  && (column == 0 || column == 1 || column == 2)
+  && (board[row][column] === ' ')) {
+    return true;
+  }
+}
+
+const ticTacToe=(row, column)=> {
+
+// if pick is valid, set the row/column to be equal to the playerTurn value
+// if not, display that choice is invalid (player can choose again)
+  if (isValidPick(row, column)){
+    board[row][column] = playerTurn;
+
+// if a player wins, display message they won and the game should be reset
+// if not, switch the player
+    if (checkForWin(row, column)){
+      console.log('Player ' + playerTurn + ' Wins! Reset game to play again.');
+    } else {
+      switchPlayer();
+    }
+  } else {
+    console.log('Invalid Option! Choose again player ' + playerTurn);
+  }
 }
 
 function getPrompt() {
@@ -84,6 +130,10 @@ if (typeof describe === 'function') {
     });
     it('should detect a win', () => {
       assert.equal(checkForWin(), true);
+    });
+    it('should detect a valid input', () => {
+      board = [ [' ', 'X', ' '], [' ', 'X', ' '], [' ', 'X', ' '] ];
+      assert.equal(isValidPick(0,0), true);
     });
   });
 } else {

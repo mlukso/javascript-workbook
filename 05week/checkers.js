@@ -7,6 +7,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+// class that assigns the player a symbol
 class Checker {
   constructor(color) {
     if (color === 'Red') {
@@ -19,6 +20,7 @@ class Checker {
 
 class Board {
   constructor() {
+    // adding an array to count the checker pieces 
     this.checkers = [];
     this.grid = [];
 
@@ -57,6 +59,7 @@ class Board {
       }
       console.log(string);
     }
+    // adding the placements for the red checker pieces on the board
     this.createCheckers = () => {
       const redPosition = [
         [0, 1],
@@ -72,13 +75,17 @@ class Board {
         [2, 5],
         [2, 7]
       ]
+      // loop to define the row & column for the red checker pieces
       for (let i = 0; i < 12; i++) {
         let redRow = redPosition[i][0];
         let redColumn = redPosition[i][1];
+        // creating a new Checker class for the red pieces        
         let redChecker = new Checker('Red')
+        // pushing the redChecker piece count to 'checkers' array
         this.checkers.push(redChecker)
         this.grid[redRow][redColumn] = redChecker;
       }
+      // adding the placements for the black checker pieces on the board
       const blackPosition = [
         [5, 0],
         [5, 2],
@@ -93,10 +100,13 @@ class Board {
         [7, 4],
         [7, 6]
       ]
+      // loop to define the row & column for the black checker pieces
       for (let i = 0; i < 12; i++) {
         let blackRow = blackPosition[i][0];
         let blackColumn = blackPosition[i][1];
+        // creating a new Checker class for the black pieces
         let blackChecker = new Checker('Black')
+        // pushing the blackChecker piece count to 'checkers' array
         this.checkers.push(blackChecker)
         this.grid[blackRow][blackColumn] = blackChecker;
       }
@@ -109,26 +119,36 @@ class Game {
     this.board = new Board;
     this.start = () => {
       this.board.createGrid();
+      // calling the function to add checkers to board
       this.board.createCheckers();
     }
+    // function to move piece based on selected choices
     this.moveChecker = (start, destination) => {
+      // calling functions to verify if the selected moves are legal/valid
       if (isLegalInput(start, destination) && isLegalMove(start, destination)) {
+        // separating values from the inputs on the game
         const startRow = parseInt(start.charAt(0));
         const startColumn = parseInt(start.charAt(1));
         const destinationRow = parseInt(destination.charAt(0));
         const destinationColumn = parseInt(destination.charAt(1));
 
+        // quick check - tied to the status of the board so decided to include it here
+        // 1. verify if the selected 'which piece' actually has a checker
+        // 2. verify if the selected 'to where' doesn't already have a checker
         if (this.board.grid[startRow][startColumn] == null || this.board.grid[destinationRow][destinationColumn] != null) {
           console.log("Invalid Move")
           return
         }
-
+        // moving checker from 'which piece' > 'to where' if it passes the above conditions
         this.board.grid[destinationRow][destinationColumn] = this.board.grid[startRow][startColumn];
+        // setting the 'which piece' to null b/c the checker was moved
         this.board.grid[startRow][startColumn] = null;
+        // Math! 
+        // logic to check that the 'which piece' checker is exacty 2 columns away from 'to where' for a jump
         if (Math.abs(destinationRow - startRow) === 2) {
           let jumpedRow;
           let jumpedColumn;
-
+          // logic to find the piece that was jumped
           if (destinationRow - startRow > 0) {
             jumpedRow = startRow + 1;
           } else {
@@ -139,7 +159,9 @@ class Game {
           } else {
             jumpedColumn = destinationColumn + 1;
           }
+          // logic to set the jumped checker piece to 'null'
           this.board.grid[jumpedRow][jumpedColumn] = null;
+          // removes a checker from the total checker count
           this.board.checkers.pop('')
         }
       } else {
@@ -148,19 +170,23 @@ class Game {
     }
   }
 }
-
+// function that verifies if the selected move is within the parameters of a legal move
 const isLegalMove = (start, destination) => {
+  // breaking down the individual row & columns
   const startRow = parseInt(start.charAt(0));
   const startColumn = parseInt(start.charAt(1));
   const destinationRow = parseInt(destination.charAt(0));
   const destinationColumn = parseInt(destination.charAt(1));
 
+  // verifying that the move is no more than 2 rows 
   let validRowMove = (Math.abs(destinationRow - startRow) <= 2)
   let validColumnMove = (Math.abs(destinationColumn - startColumn) <= 2)
 
+  // verifying that both the row & column selections are valid
   return (validRowMove && validColumnMove)
 }
 
+// function to verify if the selected 'which piece' & 'to where' inputs are a number between 0 - 7
 const isLegalInput = (start, destination) => {
   const allInputs = start + destination;
   return allInputs.split('').every(value => value >= 0 && value < 8);

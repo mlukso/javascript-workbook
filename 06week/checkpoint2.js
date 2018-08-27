@@ -9,7 +9,7 @@ const nums = strNums.map(item => Number(item))
 // Find the sum of the even values
 
 const sumEvens = nums.reduce((acc, item) => {
-  if (item % 2 ==0){
+  if (item % 2 == 0){
     acc = item + acc
   }
   return acc
@@ -94,7 +94,7 @@ const weather = [
 //using a higher order function, create an array of the unique 'weather_state_name' values of the weather array. Your function should return the following array ['Light Cloud', 'Heavy Cloud', 'Showers']
 
 const weatherStates = weather.map((item, index, self) => {
- if (self.findIndex(val => val.weather_state_name === item.weather_state_name) === index){
+ if (self.findIndex(val => val.weather_state_name == item.weather_state_name) == index){
    return item.weather_state_name
  }
 }).filter(check => check)

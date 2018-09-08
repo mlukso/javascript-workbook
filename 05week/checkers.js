@@ -77,10 +77,10 @@ class Board {
       ]
       // loop to define the row & column for the red checker pieces
       for (let i = 0; i < 12; i++) {
-        let redRow = redPosition[i][0];
-        let redColumn = redPosition[i][1];
+        const redRow = redPosition[i][0];
+        const redColumn = redPosition[i][1];
         // creating a new Checker class for the red pieces        
-        let redChecker = new Checker('Red')
+        const redChecker = new Checker('Red')
         // pushing the redChecker piece count to 'checkers' array
         this.checkers.push(redChecker)
         this.grid[redRow][redColumn] = redChecker;
@@ -102,10 +102,10 @@ class Board {
       ]
       // loop to define the row & column for the black checker pieces
       for (let i = 0; i < 12; i++) {
-        let blackRow = blackPosition[i][0];
-        let blackColumn = blackPosition[i][1];
+        const blackRow = blackPosition[i][0];
+        const blackColumn = blackPosition[i][1];
         // creating a new Checker class for the black pieces
-        let blackChecker = new Checker('Black')
+        const blackChecker = new Checker('Black')
         // pushing the blackChecker piece count to 'checkers' array
         this.checkers.push(blackChecker)
         this.grid[blackRow][blackColumn] = blackChecker;
@@ -179,8 +179,8 @@ const isLegalMove = (start, destination) => {
   const destinationColumn = parseInt(destination.charAt(1));
 
   // verifying that the move is no more than 2 rows 
-  let validRowMove = (Math.abs(destinationRow - startRow) <= 2)
-  let validColumnMove = (Math.abs(destinationColumn - startColumn) <= 2)
+  const validRowMove = (Math.abs(destinationRow - startRow) <= 2)
+  const validColumnMove = (Math.abs(destinationColumn - startColumn) <= 2)
 
   // verifying that both the row & column selections are valid
   return (validRowMove && validColumnMove)
